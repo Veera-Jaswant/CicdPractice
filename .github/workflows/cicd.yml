@@ -38,4 +38,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker Image
-        run: docker build -t cicd-pratice:${{ github.sha }} ./CicdPratice
+        run: docker build -t cicd-pratice:${{ github.sha }} ./CicdPratice/CicdPratice
