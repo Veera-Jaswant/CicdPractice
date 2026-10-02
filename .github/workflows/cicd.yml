@@ -22,5 +22,3 @@ jobs:
       - name: List files AFTER checkout
         run: ls -la
 
-      - name: Show .NET version
-        run: dotnet --version
