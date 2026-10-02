@@ -39,3 +39,6 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t cicd-pratice:${{ github.sha }} ./CicdPractice
+
+      - name: Show images on the runner
+        run: docker images
