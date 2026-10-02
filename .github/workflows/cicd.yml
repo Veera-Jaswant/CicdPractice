@@ -1,24 +1,30 @@
-name: Hello Workflow
+name: CI
 
 on:
   push:
-    branches: [ "main" ]
-  workflow_dispatch:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch: 
+
+env:
+  DOTNET_NOLOGO: true
 
 jobs:
-  say-hello:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say hello
-        run: echo "Hello from GitHub Actions!"
-
-      - name: List files BEFORE checkout
-        run: ls -la
-
-      - name: Download my code
+      - name: Checkout Code From GitHub
         uses: actions/checkout@v4
 
-      - name: List files AFTER checkout
-        run: ls -la
+      - name: Install .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
 
+      - name: Restore Packages
+        run: dotnet-restore
+
+      - name: Build Application
+        run: dotnet-build --configuration Release --no-restore
